@@ -20,8 +20,8 @@ const navLinks: NavLink[] = [
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
+    // { label: "Resume", href: "/resume.pdf" },
 ];
-
 const socialLinks: SocialLink[] = [
     {
         name: "LinkedIn",
