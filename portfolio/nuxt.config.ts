@@ -1,8 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV !== "production" },
   telemetry: false,
+
+  nitro: {
+    preset: "vercel",
+  },
 
   modules: ["@nuxtjs/tailwindcss"],
 
@@ -24,7 +28,7 @@ export default defineNuxtConfig({
         },
         { name: "author", content: "Asadbek Umarov" },
         { name: "robots", content: "index, follow" },
-        { name: "theme-color", content: "#6366f1" },
+        { name: "theme-color", content: "#0284c7" },
 
         // Open Graph
         { property: "og:type", content: "website" },
