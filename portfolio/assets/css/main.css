@@ -1,0 +1,414 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   KEYFRAMES
+   ============================================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientShift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes floatY {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* =============================================
+   BASE
+   ============================================= */
+
+@layer base {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        background-color: #030712;
+        color: #e2e8f0;
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    /* ── Custom scrollbar ── */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #030712;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #0284c7;
+        border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0369a1;
+    }
+
+    /* ── Focus ring ── */
+    :focus-visible {
+        outline: 2px solid #0284c7;
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+    :focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    img,
+    svg {
+        display: block;
+    }
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+    ul,
+    ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* =============================================
+   COMPONENTS
+   ============================================= */
+
+@layer components {
+    /* ── Layout ── */
+
+    .section-container {
+        max-width: 72rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    @media (min-width: 640px) {
+        .section-container {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .section-container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    .section-padding {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    @media (min-width: 1024px) {
+        .section-padding {
+            padding-top: 7rem;
+            padding-bottom: 7rem;
+        }
+    }
+
+    /* ── Typography ── */
+
+    .section-label {
+        display: block;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #0284c7;
+    }
+
+    .section-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        line-height: 1.2;
+    }
+
+    @media (min-width: 640px) {
+        .section-title {
+            font-size: 2.25rem;
+        }
+    }
+
+    /* ── Gradient text: blue → teal ── */
+
+    .gradient-text {
+        background: linear-gradient(135deg, #0284c7 0%, #047c58 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .gradient-text-animated {
+        background: linear-gradient(135deg, #0284c7, #047c58, #0e91c5, #0284c7);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientShift 6s ease infinite;
+    }
+
+    /* ── Glass card ── */
+    /* Base surface drawn from #0d2138 at partial opacity */
+
+    .glass-card {
+        background: rgba(13, 33, 56, 0.6);
+        border: 1px solid rgba(2, 132, 199, 0.13);
+        border-radius: 1rem;
+        transition:
+            border-color 0.3s ease,
+            background 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    .glass-card:hover {
+        border-color: rgba(2, 132, 199, 0.3);
+        background: rgba(13, 33, 56, 0.8);
+    }
+
+    /* ── Primary button: blue → teal gradient ── */
+
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        background: linear-gradient(135deg, #0284c7 0%, #047c58 100%);
+        box-shadow: 0 4px 15px rgba(2, 132, 199, 0.28);
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            filter 0.25s ease;
+        white-space: nowrap;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(2, 132, 199, 0.42);
+        filter: brightness(1.1);
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    /* ── Secondary button: dark surface + blue border ── */
+
+    .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        background: rgba(14, 22, 40, 0.75);
+        border: 1px solid rgba(2, 132, 199, 0.22);
+        transition:
+            transform 0.25s ease,
+            background 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+        white-space: nowrap;
+    }
+
+    .btn-secondary:hover {
+        transform: translateY(-2px);
+        background: rgba(14, 22, 40, 0.95);
+        border-color: rgba(2, 132, 199, 0.5);
+        box-shadow: 0 4px 20px rgba(2, 132, 199, 0.14);
+    }
+
+    .btn-secondary:active {
+        transform: translateY(0);
+    }
+
+    /* ── Tag pill ── */
+
+    .tag-pill {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.6875rem;
+        font-weight: 500;
+        padding: 0.25rem 0.625rem;
+        border-radius: 999px;
+        background: rgba(2, 132, 199, 0.09);
+        color: rgba(226, 232, 240, 0.82);
+        border: 1px solid rgba(2, 132, 199, 0.2);
+        transition:
+            background 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    /* ── Scroll animation system ── */
+
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+            opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scroll-animate.in-view {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ── Stagger delay helpers ── */
+    .delay-100 {
+        transition-delay: 0.1s;
+    }
+    .delay-150 {
+        transition-delay: 0.15s;
+    }
+    .delay-200 {
+        transition-delay: 0.2s;
+    }
+    .delay-300 {
+        transition-delay: 0.3s;
+    }
+    .delay-400 {
+        transition-delay: 0.4s;
+    }
+    .delay-500 {
+        transition-delay: 0.5s;
+    }
+}
+
+/* =============================================
+   UTILITIES
+   ============================================= */
+
+@layer utilities {
+    /* Dot-grid background using blue accent */
+    .bg-grid {
+        background-image:
+            linear-gradient(rgba(2, 132, 199, 0.045) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(2, 132, 199, 0.045) 1px,
+                transparent 1px
+            );
+        background-size: 64px 64px;
+    }
+
+    /* Vertical gradient line between sections */
+    .section-divider {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 6rem;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(2, 132, 199, 0.38),
+            transparent
+        );
+    }
+
+    /* Floating animation for decorative elements */
+    .animate-float {
+        animation: floatY 5s ease-in-out infinite;
+    }
+}
+
+/* =============================================
+   PALETTE OVERRIDES
+   Unlayered rules sit above every @layer block
+   in the CSS cascade, so they reliably override
+   Tailwind's generated utility classes.
+   ============================================= */
+
+/* Text hierarchy — all derived from #e2e8f0 at decreasing opacity */
+.text-slate-400 {
+    color: rgba(226, 232, 240, 0.62);
+}
+.text-slate-500 {
+    color: rgba(226, 232, 240, 0.44);
+}
+.text-slate-600 {
+    color: rgba(226, 232, 240, 0.3);
+}
+.text-slate-700 {
+    color: rgba(226, 232, 240, 0.2);
+}
+
+/* Hover white → palette white */
+.hover\:text-white:hover {
+    color: #e2e8f0;
+}
+
+/* Remap all Tailwind indigo hover text to the blue accent */
+.hover\:text-indigo-300:hover {
+    color: rgba(226, 232, 240, 0.88);
+}
+.hover\:text-indigo-400:hover {
+    color: #0284c7;
+}
+.group:hover .group-hover\:text-indigo-300 {
+    color: rgba(226, 232, 240, 0.88);
+}
+.group:hover .group-hover\:text-indigo-400 {
+    color: #0284c7;
+}
+
+/* Remap SVG stroke hover classes */
+.group:hover .group-hover\:stroke-indigo-400 {
+    stroke: #0284c7;
+}

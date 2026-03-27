@@ -1,0 +1,277 @@
+<script setup lang="ts">
+interface ContactCard {
+    icon: "email" | "phone" | "linkedin" | "globe";
+    label: string;
+    value: string;
+    href: string;
+    external: boolean;
+}
+
+const contacts: ContactCard[] = [
+    {
+        icon: "email",
+        label: "Email",
+        value: "asadbekumarov922@gmail.com",
+        href: "mailto:asadbekumarov922@gmail.com",
+        external: false,
+    },
+    {
+        icon: "phone",
+        label: "Phone",
+        value: "+998 77 268 7865",
+        href: "tel:+998772687865",
+        external: false,
+    },
+    {
+        icon: "linkedin",
+        label: "LinkedIn",
+        value: "asadbek-umarov-ab9385376",
+        href: "https://www.linkedin.com/in/asadbek-umarov-ab9385376",
+        external: true,
+    },
+    {
+        icon: "globe",
+        label: "Portfolio",
+        value: "portfolio-umarov-asadbek.vercel.app",
+        href: "https://portfolio-umarov-asadbek.vercel.app/",
+        external: true,
+    },
+];
+</script>
+
+<template>
+    <section
+        id="contact"
+        class="section-padding relative"
+        aria-labelledby="contact-heading"
+    >
+        <!-- Top divider -->
+        <div class="section-divider" aria-hidden="true" />
+
+        <!-- Bottom glow — teal for visual variety -->
+        <div
+            class="pointer-events-none absolute inset-0"
+            style="
+                background: radial-gradient(
+                    ellipse 65% 45% at 50% 105%,
+                    rgba(4, 124, 88, 0.08) 0%,
+                    transparent 68%
+                );
+            "
+            aria-hidden="true"
+        />
+
+        <div class="section-container relative">
+            <!-- ── Section Header ── -->
+            <div class="text-center mb-14">
+                <span class="section-label mb-3 scroll-animate">
+                    Get In Touch
+                </span>
+
+                <h2
+                    id="contact-heading"
+                    class="section-title mt-2 scroll-animate delay-100"
+                >
+                    Let's Work <span class="gradient-text">Together</span>
+                </h2>
+
+                <p
+                    class="mt-4 max-w-lg mx-auto text-base leading-relaxed scroll-animate delay-200"
+                    style="color: rgba(226, 232, 240, 0.44)"
+                >
+                    I'm actively seeking junior frontend developer roles and
+                    internships. Whether you have a project in mind or simply
+                    want to connect — my inbox is always open.
+                </p>
+            </div>
+
+            <!-- ── Contact Cards Grid ── -->
+            <div class="max-w-3xl mx-auto">
+                <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                    <a
+                        v-for="(card, index) in contacts"
+                        :key="card.label"
+                        :href="card.href"
+                        :target="card.external ? '_blank' : undefined"
+                        :rel="card.external ? 'noopener noreferrer' : undefined"
+                        class="glass-card flex items-center gap-4 p-5 group scroll-animate"
+                        :style="`transition-delay: ${0.1 + index * 0.08}s;`"
+                        :aria-label="`${card.label}: ${card.value}`"
+                    >
+                        <!-- Icon box — blue accent -->
+                        <div
+                            class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
+                            style="
+                                background: rgba(2, 132, 199, 0.1);
+                                border: 1px solid rgba(2, 132, 199, 0.2);
+                            "
+                            aria-hidden="true"
+                        >
+                            <!-- Email -->
+                            <svg
+                                v-if="card.icon === 'email'"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#0284c7"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                />
+                            </svg>
+
+                            <!-- Phone -->
+                            <svg
+                                v-else-if="card.icon === 'phone'"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#0284c7"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.41 8a16 16 0 006.59 6.59l1.18-1.34a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
+                                />
+                            </svg>
+
+                            <!-- LinkedIn -->
+                            <svg
+                                v-else-if="card.icon === 'linkedin'"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#0284c7"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                                />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+
+                            <!-- Globe -->
+                            <svg
+                                v-else
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#0284c7"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"
+                                />
+                            </svg>
+                        </div>
+
+                        <!-- Text -->
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-xs font-semibold mb-0.5"
+                                style="color: rgba(226, 232, 240, 0.4)"
+                            >
+                                {{ card.label }}
+                            </p>
+                            <p
+                                class="text-sm font-semibold truncate transition-colors duration-200"
+                                style="color: #e2e8f0"
+                                onmouseover="this.style.color = '#0284c7'"
+                                onmouseout="this.style.color = '#e2e8f0'"
+                            >
+                                {{ card.value }}
+                            </p>
+                        </div>
+
+                        <!-- External link arrow -->
+                        <svg
+                            v-if="card.external"
+                            class="flex-shrink-0 transition-colors duration-200"
+                            style="color: rgba(226, 232, 240, 0.22)"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"
+                            />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- ── Primary CTA ── -->
+                <div class="text-center scroll-animate delay-400">
+                    <!-- Decorative "or" divider -->
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="flex-1 h-px"
+                            style="background: rgba(226, 232, 240, 0.07)"
+                            aria-hidden="true"
+                        />
+                        <span
+                            class="text-xs font-semibold tracking-widest uppercase"
+                            style="color: rgba(226, 232, 240, 0.22)"
+                        >
+                            or reach out directly
+                        </span>
+                        <div
+                            class="flex-1 h-px"
+                            style="background: rgba(226, 232, 240, 0.07)"
+                            aria-hidden="true"
+                        />
+                    </div>
+
+                    <a
+                        href="mailto:asadbekumarov922@gmail.com"
+                        class="btn-primary"
+                        style="padding: 0.875rem 2.5rem; font-size: 1rem"
+                    >
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            />
+                        </svg>
+                        Send Me an Email
+                    </a>
+
+                    <p
+                        class="mt-4 text-xs"
+                        style="color: rgba(226, 232, 240, 0.25)"
+                    >
+                        Typically respond within 24 hours · Located in UTC+5
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
