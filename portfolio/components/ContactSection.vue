@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface ContactCard {
     icon: "email" | "phone" | "linkedin" | "globe";
-    label: string;
+    labelKey: string;
     value: string;
     href: string;
     external: boolean;
@@ -10,33 +10,41 @@ interface ContactCard {
 const contacts: ContactCard[] = [
     {
         icon: "email",
-        label: "Email",
+        labelKey: "about.info.location", // label mismatch fix: should be label of the card
         value: "asadbekumarov922@gmail.com",
         href: "mailto:asadbekumarov922@gmail.com",
         external: false,
     },
     {
         icon: "phone",
-        label: "Phone",
+        labelKey: "nav.contact", 
         value: "+998 77 268 7865",
         href: "tel:+998772687865",
         external: false,
     },
     {
         icon: "linkedin",
-        label: "LinkedIn",
+        labelKey: "about.ctas.linkedin",
         value: "asadbek-umarov-ab9385376",
         href: "https://www.linkedin.com/in/asadbek-umarov-ab9385376",
         external: true,
     },
     {
         icon: "globe",
-        label: "Portfolio",
+        labelKey: "about.ctas.portfolio",
         value: "portfolio-umarov-asadbek.vercel.app",
         href: "https://portfolio-umarov-asadbek.vercel.app/",
         external: true,
     },
 ];
+
+// Mapping correctly for labels
+const contactLabels: Record<string, string> = {
+    email: "Email",
+    phone: "Phone",
+    linkedin: "LinkedIn",
+    globe: "Portfolio"
+};
 </script>
 
 <template>
@@ -50,14 +58,7 @@ const contacts: ContactCard[] = [
 
         <!-- Bottom glow — teal for visual variety -->
         <div
-            class="pointer-events-none absolute inset-0"
-            style="
-                background: radial-gradient(
-                    ellipse 65% 45% at 50% 105%,
-                    rgba(4, 124, 88, 0.08) 0%,
-                    transparent 68%
-                );
-            "
+            class="pointer-events-none absolute inset-0 contact-glow"
             aria-hidden="true"
         />
 
@@ -65,23 +66,20 @@ const contacts: ContactCard[] = [
             <!-- ── Section Header ── -->
             <div class="text-center mb-14">
                 <span class="section-label mb-3 scroll-animate">
-                    Get In Touch
+                    {{ $t('contact.label') }}
                 </span>
 
                 <h2
                     id="contact-heading"
                     class="section-title mt-2 scroll-animate delay-100"
                 >
-                    Let's Work <span class="gradient-text">Together</span>
+                    {{ $t('contact.title') }} <span class="gradient-text">{{ $t('contact.title_accent') }}</span>
                 </h2>
 
                 <p
-                    class="mt-4 max-w-lg mx-auto text-base leading-relaxed scroll-animate delay-200"
-                    style="color: rgba(226, 232, 240, 0.44)"
+                    class="mt-4 max-w-lg mx-auto text-base leading-relaxed scroll-animate delay-200 text-slate-400/45"
                 >
-                    I'm actively seeking junior frontend developer roles and
-                    internships. Whether you have a project in mind or simply
-                    want to connect — my inbox is always open.
+                    {{ $t('contact.description') }}
                 </p>
             </div>
 
@@ -90,21 +88,17 @@ const contacts: ContactCard[] = [
                 <div class="grid sm:grid-cols-2 gap-4 mb-8">
                     <a
                         v-for="(card, index) in contacts"
-                        :key="card.label"
+                        :key="card.icon"
                         :href="card.href"
                         :target="card.external ? '_blank' : undefined"
                         :rel="card.external ? 'noopener noreferrer' : undefined"
                         class="glass-card flex items-center gap-4 p-5 group scroll-animate"
                         :style="`transition-delay: ${0.1 + index * 0.08}s;`"
-                        :aria-label="`${card.label}: ${card.value}`"
+                        :aria-label="`${contactLabels[card.icon]}: ${card.value}`"
                     >
                         <!-- Icon box — blue accent -->
                         <div
-                            class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
-                            style="
-                                background: rgba(2, 132, 199, 0.1);
-                                border: 1px solid rgba(2, 132, 199, 0.2);
-                            "
+                            class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 bg-sky-500/10 border border-sky-500/20 group-hover:bg-sky-500/20"
                             aria-hidden="true"
                         >
                             <!-- Email -->
@@ -143,7 +137,7 @@ const contacts: ContactCard[] = [
 
                             <!-- LinkedIn -->
                             <svg
-                                v-else-if="card.icon === 'linkedin'"
+                                v-if="card.icon === 'linkedin'"
                                 width="20"
                                 height="20"
                                 viewBox="0 0 24 24"
@@ -161,7 +155,7 @@ const contacts: ContactCard[] = [
 
                             <!-- Globe -->
                             <svg
-                                v-else
+                                v-if="card.icon === 'globe'"
                                 width="20"
                                 height="20"
                                 viewBox="0 0 24 24"
@@ -182,16 +176,12 @@ const contacts: ContactCard[] = [
                         <!-- Text -->
                         <div class="flex-1 min-w-0">
                             <p
-                                class="text-xs font-semibold mb-0.5"
-                                style="color: rgba(226, 232, 240, 0.4)"
+                                class="text-xs font-semibold mb-0.5 text-slate-400/40"
                             >
-                                {{ card.label }}
+                                {{ contactLabels[card.icon] }}
                             </p>
                             <p
-                                class="text-sm font-semibold truncate transition-colors duration-200"
-                                style="color: #e2e8f0"
-                                onmouseover="this.style.color = '#0284c7'"
-                                onmouseout="this.style.color = '#e2e8f0'"
+                                class="text-sm font-semibold truncate transition-colors duration-200 text-slate-200 group-hover:text-sky-500"
                             >
                                 {{ card.value }}
                             </p>
@@ -200,8 +190,7 @@ const contacts: ContactCard[] = [
                         <!-- External link arrow -->
                         <svg
                             v-if="card.external"
-                            class="flex-shrink-0 transition-colors duration-200"
-                            style="color: rgba(226, 232, 240, 0.22)"
+                            class="flex-shrink-0 transition-colors duration-200 text-slate-400/20 group-hover:text-slate-200"
                             width="14"
                             height="14"
                             viewBox="0 0 24 24"
@@ -224,27 +213,23 @@ const contacts: ContactCard[] = [
                     <!-- Decorative "or" divider -->
                     <div class="flex items-center gap-4 mb-8">
                         <div
-                            class="flex-1 h-px"
-                            style="background: rgba(226, 232, 240, 0.07)"
+                            class="flex-1 h-px bg-slate-200/5"
                             aria-hidden="true"
                         />
                         <span
-                            class="text-xs font-semibold tracking-widest uppercase"
-                            style="color: rgba(226, 232, 240, 0.22)"
+                            class="text-xs font-semibold tracking-widest uppercase text-slate-400/20"
                         >
-                            or reach out directly
+                            {{ $t('contact.or_reach_out') }}
                         </span>
                         <div
-                            class="flex-1 h-px"
-                            style="background: rgba(226, 232, 240, 0.07)"
+                            class="flex-1 h-px bg-slate-200/5"
                             aria-hidden="true"
                         />
                     </div>
 
                     <a
                         href="mailto:asadbekumarov922@gmail.com"
-                        class="btn-primary"
-                        style="padding: 0.875rem 2.5rem; font-size: 1rem"
+                        class="btn-primary py-3.5 px-10 text-base"
                     >
                         <svg
                             width="18"
@@ -261,17 +246,26 @@ const contacts: ContactCard[] = [
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                             />
                         </svg>
-                        Send Me an Email
+                        {{ $t('contact.cta_email') }}
                     </a>
 
                     <p
-                        class="mt-4 text-xs"
-                        style="color: rgba(226, 232, 240, 0.25)"
+                        class="mt-4 text-xs text-slate-400/25"
                     >
-                        Typically respond within 24 hours · Located in UTC+5
+                        {{ $t('contact.response_time') }}
                     </p>
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<style scoped>
+.contact-glow {
+    background: radial-gradient(
+        ellipse 65% 45% at 50% 105%,
+        rgba(4, 124, 88, 0.08) 0%,
+        transparent 68%
+    );
+}
+</style>

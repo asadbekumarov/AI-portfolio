@@ -7,20 +7,19 @@ interface SocialLink {
 }
 
 interface NavLink {
-    label: string;
+    labelKey: string;
     href: string;
 }
 
 const currentYear = new Date().getFullYear();
 
 const navLinks: NavLink[] = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Education", href: "#education" },
-    { label: "Contact", href: "#contact" },
-    // { label: "Resume", href: "/resume.pdf" },
+    { labelKey: "nav.about", href: "#about" },
+    { labelKey: "nav.skills", href: "#skills" },
+    { labelKey: "nav.experience", href: "#experience" },
+    { labelKey: "nav.projects", href: "#projects" },
+    { labelKey: "nav.education", href: "#education" },
+    { labelKey: "nav.contact", href: "#contact" },
 ];
 const socialLinks: SocialLink[] = [
     {
@@ -61,26 +60,12 @@ const scrollToSection = (href: string): void => {
 
 <template>
     <footer
-        class="relative"
-        style="
-            background: #030712;
-            border-top: 1px solid rgba(2, 132, 199, 0.1);
-        "
+        class="relative bg-[#030712] border-t border-sky-500/10"
         role="contentinfo"
     >
         <!-- Top accent line: blue → teal gradient -->
         <div
-            class="pointer-events-none absolute top-0 left-0 right-0"
-            style="
-                height: 1px;
-                background: linear-gradient(
-                    90deg,
-                    transparent 0%,
-                    rgba(2, 132, 199, 0.5) 30%,
-                    rgba(4, 124, 88, 0.5) 70%,
-                    transparent 100%
-                );
-            "
+            class="pointer-events-none absolute top-0 left-0 right-0 h-px footer-accent-line"
             aria-hidden="true"
         />
 
@@ -99,34 +84,22 @@ const scrollToSection = (href: string): void => {
                         @click.prevent="scrollToTop"
                     >
                         <div
-                            class="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-black transition-all duration-300 group-hover:scale-105"
-                            style="
-                                color: #e2e8f0;
-                                background: linear-gradient(
-                                    135deg,
-                                    #0284c7 0%,
-                                    #047c58 100%
-                                );
-                                box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
-                            "
+                            class="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-black transition-all duration-300 group-hover:scale-105 logo-gradient shadow-[0_4px_14px_rgba(2,132,199,0.3)] text-slate-200"
                             aria-hidden="true"
                         >
                             AU
                         </div>
                         <span
-                            class="text-sm font-semibold tracking-wide"
-                            style="color: #e2e8f0"
+                            class="text-sm font-semibold tracking-wide text-slate-200"
                         >
                             Asadbek Umarov
                         </span>
                     </a>
 
                     <p
-                        class="text-xs leading-relaxed max-w-xs"
-                        style="color: rgba(226, 232, 240, 0.44)"
+                        class="text-xs leading-relaxed max-w-xs text-slate-400/45"
                     >
-                        Junior Frontend Developer crafting modern, responsive
-                        web experiences with React, TypeScript &amp; Next.js.
+                        {{ $t('footer.tagline') }}
                     </p>
 
                     <!-- Location + availability -->
@@ -135,26 +108,22 @@ const scrollToSection = (href: string): void => {
                     >
                         <span class="relative flex h-2 w-2" aria-hidden="true">
                             <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-65"
-                                style="background: #047c58"
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-65 bg-emerald-600"
                             />
                             <span
-                                class="relative inline-flex rounded-full h-2 w-2"
-                                style="background: #047c58"
+                                class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"
                             />
                         </span>
                         <span
-                            class="text-xs font-semibold"
-                            style="color: rgba(226, 232, 240, 0.82)"
+                            class="text-xs font-semibold text-slate-200/80"
                         >
-                            Open to Work
+                            {{ $t('about.info.open_to_work') }}
                         </span>
-                        <span style="color: rgba(226, 232, 240, 0.15)">·</span>
+                        <span class="text-slate-200/15">·</span>
                         <span
-                            class="text-xs"
-                            style="color: rgba(226, 232, 240, 0.38)"
+                            class="text-xs text-slate-400/40"
                         >
-                            Tashkent, Uzbekistan
+                            {{ $t('hero.location') }}
                         </span>
                     </div>
                 </div>
@@ -162,10 +131,9 @@ const scrollToSection = (href: string): void => {
                 <!-- Nav Links -->
                 <nav aria-label="Footer navigation">
                     <p
-                        class="text-xs font-bold tracking-widest uppercase text-center lg:text-left mb-4"
-                        style="color: rgba(226, 232, 240, 0.25)"
+                        class="text-xs font-bold tracking-widest uppercase text-center lg:text-left mb-4 text-slate-400/25"
                     >
-                        Navigation
+                        {{ $t('nav.navigation') }}
                     </p>
                     <ul
                         class="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2"
@@ -174,15 +142,10 @@ const scrollToSection = (href: string): void => {
                         <li v-for="link in navLinks" :key="link.href">
                             <a
                                 :href="link.href"
-                                class="text-sm transition-colors duration-200"
-                                style="color: rgba(226, 232, 240, 0.44)"
-                                onmouseover="this.style.color = '#e2e8f0'"
-                                onmouseout="
-                                    this.style.color = 'rgba(226,232,240,0.44)'
-                                "
+                                class="text-sm transition-colors duration-200 text-slate-400/45 hover:text-slate-200"
                                 @click.prevent="scrollToSection(link.href)"
                             >
-                                {{ link.label }}
+                                {{ $t(link.labelKey) }}
                             </a>
                         </li>
                     </ul>
@@ -191,10 +154,9 @@ const scrollToSection = (href: string): void => {
                 <!-- Connect Column -->
                 <div>
                     <p
-                        class="text-xs font-bold tracking-widest uppercase text-center lg:text-left mb-4"
-                        style="color: rgba(226, 232, 240, 0.25)"
+                        class="text-xs font-bold tracking-widest uppercase text-center lg:text-left mb-4 text-slate-400/25"
                     >
-                        Connect
+                        {{ $t('nav.connect') }}
                     </p>
 
                     <div
@@ -211,19 +173,7 @@ const scrollToSection = (href: string): void => {
                                     : undefined
                             "
                             :aria-label="social.name"
-                            class="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200"
-                            style="
-                                background: rgba(14, 22, 40, 0.8);
-                                border: 1px solid rgba(2, 132, 199, 0.14);
-                            "
-                            onmouseover="
-                                this.style.background = 'rgba(2,132,199,0.12)';
-                                this.style.borderColor = 'rgba(2,132,199,0.35)';
-                            "
-                            onmouseout="
-                                this.style.background = 'rgba(14,22,40,0.8)';
-                                this.style.borderColor = 'rgba(2,132,199,0.14)';
-                            "
+                            class="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 bg-slate-900/80 border border-sky-500/15 hover:bg-sky-500/10 hover:border-sky-500/35"
                         >
                             <!-- LinkedIn -->
                             <svg
@@ -304,8 +254,7 @@ const scrollToSection = (href: string): void => {
 
                     <!-- Email hint -->
                     <p
-                        class="text-xs mt-3 text-center lg:text-left"
-                        style="color: rgba(226, 232, 240, 0.28)"
+                        class="text-xs mt-3 text-center lg:text-left text-slate-400/30"
                     >
                         asadbekumarov922@gmail.com
                     </p>
@@ -314,8 +263,7 @@ const scrollToSection = (href: string): void => {
 
             <!-- ── Horizontal Divider ── -->
             <div
-                class="w-full h-px"
-                style="background: rgba(2, 132, 199, 0.1)"
+                class="w-full h-px bg-sky-500/10"
                 aria-hidden="true"
             />
 
@@ -324,32 +272,42 @@ const scrollToSection = (href: string): void => {
                 class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6"
             >
                 <p
-                    class="text-xs order-2 sm:order-1"
-                    style="color: rgba(226, 232, 240, 0.28)"
+                    class="text-xs order-2 sm:order-1 text-slate-400/30"
                 >
-                    &copy; {{ currentYear }} Asadbek Umarov. All rights
-                    reserved.
+                    &copy; {{ currentYear }} Asadbek Umarov. {{ $t('footer.rights') }}
                 </p>
 
                 <p
-                    class="text-xs order-1 sm:order-2 flex items-center gap-1.5"
-                    style="color: rgba(226, 232, 240, 0.28)"
+                    class="text-xs order-1 sm:order-2 flex items-center gap-1.5 text-slate-400/30"
                 >
-                    Built with
-                    <span class="font-semibold" style="color: #0284c7"
-                        >Nuxt 3</span
-                    >
-                    <span style="color: rgba(226, 232, 240, 0.15)">&amp;</span>
-                    <span class="font-semibold" style="color: #0284c7"
-                        >TypeScript</span
-                    >
-                    <span style="color: rgba(226, 232, 240, 0.15)">·</span>
-                    <span>Deployed on</span>
-                    <span class="font-semibold" style="color: #047c58"
-                        >Vercel</span
-                    >
+                    {{ $t('footer.built_with') }}
+                    <span class="font-semibold text-sky-600">Nuxt 3</span>
+                    <span class="text-slate-200/15">&amp;</span>
+                    <span class="font-semibold text-sky-600">TypeScript</span>
+                    <span class="text-slate-200/15">·</span>
+                    <span>{{ $t('footer.deployed_on') }}</span>
+                    <span class="font-semibold text-emerald-700">Vercel</span>
                 </p>
             </div>
         </div>
     </footer>
 </template>
+
+<style scoped>
+.footer-accent-line {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(2, 132, 199, 0.5) 30%,
+        rgba(4, 124, 88, 0.5) 70%,
+        transparent 100%
+    );
+}
+.logo-gradient {
+    background: linear-gradient(
+        135deg,
+        #0284c7 0%,
+        #047c58 100%
+    );
+}
+</style>

@@ -1,28 +1,28 @@
 <script setup lang="ts">
 interface SkillCategory {
     emoji: string;
-    category: string;
-    description: string;
+    categoryKey: string;
+    descriptionKey: string;
     skills: string[];
 }
 
 const skillCategories: SkillCategory[] = [
     {
         emoji: "⚡",
-        category: "Core Languages",
-        description: "The foundation of every project",
+        categoryKey: "skills.categories.core",
+        descriptionKey: "The foundation of every project",
         skills: ["JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3"],
     },
     {
         emoji: "🚀",
-        category: "Frameworks & Libraries",
-        description: "Building modern, scalable UIs",
+        categoryKey: "skills.categories.frameworks",
+        descriptionKey: "Building modern, scalable UIs",
         skills: ["React.js", "Next.js", "React Native"],
     },
     {
         emoji: "🎨",
-        category: "Styling",
-        description: "Crafting beautiful, responsive layouts",
+        categoryKey: "skills.categories.styling",
+        descriptionKey: "Crafting beautiful, responsive layouts",
         skills: [
             "Tailwind CSS",
             "CSS Modules",
@@ -32,20 +32,20 @@ const skillCategories: SkillCategory[] = [
     },
     {
         emoji: "🔄",
-        category: "State & Data",
-        description: "Efficient data flow and management",
+        categoryKey: "skills.categories.state",
+        descriptionKey: "Efficient data flow and management",
         skills: ["RTK Query", "Redux Toolkit", "REST APIs", "Async/Await"],
     },
     {
         emoji: "🛠️",
-        category: "Tools & Workflow",
-        description: "Professional development practices",
+        categoryKey: "skills.categories.tools",
+        descriptionKey: "Professional development practices",
         skills: ["Git", "GitHub", "VS Code", "Figma", "npm / yarn"],
     },
     {
         emoji: "💡",
-        category: "Soft Skills",
-        description: "What makes a great teammate",
+        categoryKey: "skills.categories.soft",
+        descriptionKey: "What makes a great teammate",
         skills: [
             "Problem Solving",
             "Team Collaboration",
@@ -67,14 +67,7 @@ const skillCategories: SkillCategory[] = [
 
         <!-- Subtle background glow -->
         <div
-            class="pointer-events-none absolute inset-0"
-            style="
-                background: radial-gradient(
-                    ellipse 70% 40% at 50% 50%,
-                    rgba(2, 132, 199, 0.05) 0%,
-                    transparent 70%
-                );
-            "
+            class="pointer-events-none absolute inset-0 skills-glow"
             aria-hidden="true"
         />
 
@@ -82,21 +75,19 @@ const skillCategories: SkillCategory[] = [
             <!-- ── Section Header ── -->
             <div class="text-center mb-14">
                 <span class="section-label mb-3 scroll-animate">
-                    Technical Expertise
+                    {{ $t('skills.label') }}
                 </span>
                 <h2
                     id="skills-heading"
                     class="section-title mt-2 scroll-animate delay-100"
                 >
-                    Skills &amp;
-                    <span class="gradient-text">Technologies</span>
+                    {{ $t('skills.title') }}
+                    <span class="gradient-text">{{ $t('skills.title_accent') }}</span>
                 </h2>
                 <p
-                    class="mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed scroll-animate delay-200"
-                    style="color: rgba(226, 232, 240, 0.44)"
+                    class="mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed scroll-animate delay-200 text-slate-400/45"
                 >
-                    A focused toolkit forged through real-world projects and
-                    continuous self-driven learning.
+                    {{ $t('skills.description') }}
                 </p>
             </div>
 
@@ -108,7 +99,7 @@ const skillCategories: SkillCategory[] = [
             >
                 <div
                     v-for="(cat, index) in skillCategories"
-                    :key="cat.category"
+                    :key="cat.categoryKey"
                     class="glass-card p-6 group scroll-animate"
                     :style="`transition-delay: ${0.05 + index * 0.08}s;`"
                     role="listitem"
@@ -117,35 +108,28 @@ const skillCategories: SkillCategory[] = [
                     <div class="flex items-start gap-3 mb-4">
                         <!-- Icon box -->
                         <div
-                            class="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                            style="
-                                background: rgba(2, 132, 199, 0.1);
-                                border: 1px solid rgba(2, 132, 199, 0.2);
-                            "
+                            class="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 transition-transform duration-300 group-hover:scale-110 bg-sky-500/10 border border-sky-500/20"
                             aria-hidden="true"
                         >
                             {{ cat.emoji }}
                         </div>
                         <div>
                             <h3
-                                class="text-sm font-semibold leading-tight"
-                                style="color: #e2e8f0"
+                                class="text-sm font-semibold leading-tight text-slate-200"
                             >
-                                {{ cat.category }}
+                                {{ $t(cat.categoryKey) }}
                             </h3>
                             <p
-                                class="text-xs mt-0.5"
-                                style="color: rgba(226, 232, 240, 0.38)"
+                                class="text-xs mt-0.5 text-slate-400/40"
                             >
-                                {{ cat.description }}
+                                {{ cat.descriptionKey }}
                             </p>
                         </div>
                     </div>
 
                     <!-- Divider -->
                     <div
-                        class="h-px w-full mb-4"
-                        style="background: rgba(2, 132, 199, 0.1)"
+                        class="h-px w-full mb-4 bg-sky-500/10"
                         aria-hidden="true"
                     />
 
@@ -153,7 +137,7 @@ const skillCategories: SkillCategory[] = [
                     <div
                         class="flex flex-wrap gap-2"
                         role="list"
-                        :aria-label="`${cat.category} skills`"
+                        :aria-label="`${$t(cat.categoryKey)} skills`"
                     >
                         <span
                             v-for="skill in cat.skills"
@@ -169,18 +153,27 @@ const skillCategories: SkillCategory[] = [
 
             <!-- ── Bottom note ── -->
             <p
-                class="text-center mt-10 text-xs scroll-animate"
-                style="color: rgba(226, 232, 240, 0.28); letter-spacing: 0.04em"
+                class="text-center mt-10 text-xs scroll-animate text-slate-400/30 tracking-tight"
             >
-                Always learning · Currently exploring
-                <strong style="color: #0284c7; font-weight: 600">
-                    advanced Next.js patterns
+                {{ $t('skills.bottom_note') }}
+                <strong class="text-sky-600 font-semibold">
+                    {{ $t('skills.advanced_next') }}
                 </strong>
                 &amp;
-                <strong style="color: #0284c7; font-weight: 600">
-                    performance optimization
+                <strong class="text-sky-600 font-semibold">
+                    {{ $t('skills.performance') }}
                 </strong>
             </p>
         </div>
     </section>
 </template>
+
+<style scoped>
+.skills-glow {
+    background: radial-gradient(
+        ellipse 70% 40% at 50% 50%,
+        rgba(2, 132, 199, 0.05) 0%,
+        transparent 70%
+    );
+}
+</style>

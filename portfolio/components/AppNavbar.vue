@@ -88,7 +88,7 @@ const scrollToSection = (href: string): void => {
                 </a>
 
                 <!-- ── Desktop Navigation ── -->
-                <ul class="hidden md:flex items-center gap-0.5" role="list">
+                <ul class="hidden lg:flex items-center gap-0.5" role="list">
                     <li v-for="link in navLinks" :key="link.href">
                         <a
                             :href="link.href"
@@ -100,13 +100,14 @@ const scrollToSection = (href: string): void => {
                             "
                             @click.prevent="scrollToSection(link.href)"
                         >
-                            {{ link.label }}
+                            {{ $t(`nav.${link.label.toLowerCase()}`) }}
                         </a>
                     </li>
                 </ul>
 
-                <!-- ── Desktop CTA ── -->
-                <div class="hidden md:flex items-center gap-3">
+                <!-- ── Desktop CTA & Lang ── -->
+                <div class="hidden md:flex items-center gap-6">
+                    <LangSwitcher />
                     <a
                         href="mailto:asadbekumarov922@gmail.com"
                         class="btn-primary"
@@ -125,7 +126,7 @@ const scrollToSection = (href: string): void => {
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                             />
                         </svg>
-                        Hire Me
+                        {{ $t('nav.hire_me') }}
                     </a>
                 </div>
 

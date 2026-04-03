@@ -48,36 +48,25 @@ const experiences: ExperienceItem[] = [
 
         <!-- Subtle background glow (blue) -->
         <div
-            class="pointer-events-none absolute inset-0"
-            style="
-                background: radial-gradient(
-                    ellipse 55% 35% at 20% 60%,
-                    rgba(2, 132, 199, 0.06) 0%,
-                    transparent 70%
-                );
-            "
+            class="pointer-events-none absolute inset-0 experience-glow"
             aria-hidden="true"
         />
 
         <div class="section-container relative">
             <!-- ── Section Header ── -->
             <div class="text-center mb-16">
-                <span class="section-label mb-3 scroll-animate"
-                    >Work History</span
-                >
+                <span class="section-label mb-3 scroll-animate">{{ $t('experience.label') }}</span>
                 <h2
                     id="experience-heading"
                     class="section-title scroll-animate delay-100"
                 >
-                    Professional
-                    <span class="gradient-text"> Experience</span>
+                    {{ $t('experience.title') }}
+                    <span class="gradient-text"> {{ $t('experience.title_accent') }}</span>
                 </h2>
                 <p
-                    class="mt-4 max-w-xl mx-auto text-base leading-relaxed scroll-animate delay-200"
-                    style="color: rgba(226, 232, 240, 0.44)"
+                    class="mt-4 max-w-xl mx-auto text-base leading-relaxed scroll-animate delay-200 text-slate-400/45"
                 >
-                    Real-world production experience building user-facing
-                    applications that serve actual end-users.
+                    {{ $t('experience.description') }}
                 </p>
             </div>
 
@@ -90,34 +79,23 @@ const experiences: ExperienceItem[] = [
                 >
                     <!-- Vertical timeline line -->
                     <div
-                        class="absolute left-0 top-0 bottom-0 w-px"
-                        style="
-                            background: linear-gradient(
-                                to bottom,
-                                #0284c7 0%,
-                                rgba(2, 132, 199, 0.3) 60%,
-                                transparent 100%
-                            );
-                        "
+                        class="absolute left-0 top-0 bottom-0 w-px timeline-line"
                         aria-hidden="true"
                     />
 
                     <!-- Timeline dot -->
                     <div
-                        class="absolute left-[-5px] top-7 w-[11px] h-[11px] rounded-full"
-                        style="border: 2px solid #0284c7; background: #030712"
+                        class="absolute left-[-5px] top-7 w-[11px] h-[11px] rounded-full border-2 border-sky-600 bg-[#030712]"
                         aria-hidden="true"
                     >
                         <!-- Pulsing inner dot — teal for current role -->
                         <div
                             v-if="exp.current"
-                            class="absolute inset-[2px] rounded-full animate-ping"
-                            style="background: #047c58; opacity: 0.8"
+                            class="absolute inset-[2px] rounded-full animate-ping bg-emerald-700 opacity-80"
                         />
                         <div
                             v-if="exp.current"
-                            class="absolute inset-[2px] rounded-full"
-                            style="background: #047c58"
+                            class="absolute inset-[2px] rounded-full bg-emerald-700"
                         />
                     </div>
 
@@ -135,27 +113,19 @@ const experiences: ExperienceItem[] = [
                                     class="flex flex-wrap items-center gap-2.5 mb-1.5"
                                 >
                                     <h3
-                                        class="text-lg font-bold"
-                                        style="color: #e2e8f0"
+                                        class="text-lg font-bold text-slate-200"
                                     >
                                         {{ exp.role }}
                                     </h3>
                                     <span
                                         v-if="exp.current"
-                                        class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full"
-                                        style="
-                                            background: rgba(4, 124, 88, 0.12);
-                                            color: rgba(226, 232, 240, 0.88);
-                                            border: 1px solid
-                                                rgba(4, 124, 88, 0.28);
-                                        "
+                                        class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-slate-200/90 border border-emerald-500/30"
                                     >
                                         <span
-                                            class="w-1.5 h-1.5 rounded-full"
-                                            style="background: #047c58"
+                                            class="w-1.5 h-1.5 rounded-full bg-emerald-700"
                                             aria-hidden="true"
                                         />
-                                        Current
+                                        {{ $t('experience.current') }}
                                     </span>
                                 </div>
 
@@ -164,26 +134,25 @@ const experiences: ExperienceItem[] = [
                                     class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm"
                                 >
                                     <span
-                                        class="font-semibold"
-                                        style="color: #0284c7"
+                                        class="font-semibold text-sky-600"
                                     >
                                         {{ exp.company }}
                                     </span>
                                     <span
-                                        style="color: rgba(226, 232, 240, 0.2)"
+                                        class="text-slate-200/20"
                                         >·</span
                                     >
                                     <span
-                                        style="color: rgba(226, 232, 240, 0.44)"
+                                        class="text-slate-400/45"
                                     >
                                         {{ exp.type }}
                                     </span>
                                     <span
-                                        style="color: rgba(226, 232, 240, 0.2)"
+                                        class="text-slate-200/20"
                                         >·</span
                                     >
                                     <span
-                                        style="color: rgba(226, 232, 240, 0.44)"
+                                        class="text-slate-400/45"
                                     >
                                         {{ exp.location }}
                                     </span>
@@ -192,12 +161,7 @@ const experiences: ExperienceItem[] = [
 
                             <!-- Period badge -->
                             <span
-                                class="text-xs font-semibold px-3 py-1.5 rounded-lg flex-shrink-0"
-                                style="
-                                    background: rgba(13, 33, 56, 0.8);
-                                    border: 1px solid rgba(2, 132, 199, 0.15);
-                                    color: rgba(226, 232, 240, 0.62);
-                                "
+                                class="text-xs font-semibold px-3 py-1.5 rounded-lg flex-shrink-0 bg-[#0d2138]/80 border border-sky-500/15 text-slate-200/60"
                             >
                                 {{ exp.period }}
                             </span>
@@ -205,15 +169,13 @@ const experiences: ExperienceItem[] = [
 
                         <!-- Horizontal divider -->
                         <div
-                            class="w-full h-px mb-5"
-                            style="background: rgba(2, 132, 199, 0.1)"
+                            class="w-full h-px mb-5 bg-sky-500/10"
                             aria-hidden="true"
                         />
 
                         <!-- Description -->
                         <p
-                            class="text-sm leading-relaxed mb-5"
-                            style="color: rgba(226, 232, 240, 0.62)"
+                            class="text-sm leading-relaxed mb-5 text-slate-400/60"
                         >
                             {{ exp.description }}
                         </p>
@@ -226,17 +188,11 @@ const experiences: ExperienceItem[] = [
                             <li
                                 v-for="(achievement, i) in exp.achievements"
                                 :key="i"
-                                class="flex items-start gap-3 text-sm"
-                                style="color: rgba(226, 232, 240, 0.82)"
+                                class="flex items-start gap-3 text-sm text-slate-200/80"
                             >
                                 <!-- Check icon -->
                                 <span
-                                    class="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full flex items-center justify-center"
-                                    style="
-                                        background: rgba(2, 132, 199, 0.12);
-                                        border: 1px solid
-                                            rgba(2, 132, 199, 0.25);
-                                    "
+                                    class="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full flex items-center justify-center bg-sky-500/10 border border-sky-500/25"
                                     aria-hidden="true"
                                 >
                                     <svg
@@ -258,8 +214,7 @@ const experiences: ExperienceItem[] = [
 
                         <!-- Technology tags -->
                         <div
-                            class="flex flex-wrap gap-2 pt-5"
-                            style="border-top: 1px solid rgba(2, 132, 199, 0.1)"
+                            class="flex flex-wrap gap-2 pt-5 border-t border-sky-500/10"
                             aria-label="Technologies used"
                         >
                             <span
@@ -277,20 +232,12 @@ const experiences: ExperienceItem[] = [
             <!-- ── Open to Work CTA ── -->
             <div class="max-w-3xl mx-auto mt-8 pl-10 scroll-animate delay-300">
                 <div
-                    class="glass-card p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-                    style="
-                        border-color: rgba(2, 132, 199, 0.22);
-                        background: rgba(2, 132, 199, 0.04);
-                    "
+                    class="glass-card p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-sky-500/20 bg-sky-500/5"
                 >
                     <div class="flex items-center gap-3">
                         <!-- Briefcase icon box -->
                         <div
-                            class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                            style="
-                                background: rgba(2, 132, 199, 0.1);
-                                border: 1px solid rgba(2, 132, 199, 0.22);
-                            "
+                            class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-sky-500/10 border border-sky-500/20"
                             aria-hidden="true"
                         >
                             <svg
@@ -318,25 +265,21 @@ const experiences: ExperienceItem[] = [
                         </div>
                         <div>
                             <p
-                                class="text-sm font-semibold"
-                                style="color: #e2e8f0"
+                                class="text-sm font-semibold text-slate-200"
                             >
-                                Open to New Opportunities
+                                {{ $t('experience.open_to_work') }}
                             </p>
                             <p
-                                class="text-xs mt-0.5"
-                                style="color: rgba(226, 232, 240, 0.44)"
+                                class="text-xs mt-0.5 text-slate-400/45"
                             >
-                                Actively seeking junior frontend developer roles
-                                &amp; internships worldwide.
+                                {{ $t('experience.seeking') }}
                             </p>
                         </div>
                     </div>
 
                     <a
                         href="mailto:asadbekumarov922@gmail.com"
-                        class="btn-primary flex-shrink-0"
-                        style="padding: 0.5rem 1.25rem; font-size: 0.8125rem"
+                        class="btn-primary py-2 px-5 text-sm"
                     >
                         <svg
                             width="14"
@@ -353,10 +296,28 @@ const experiences: ExperienceItem[] = [
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                             />
                         </svg>
-                        Let's Talk
+                        {{ $t('experience.cta_talk') }}
                     </a>
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<style scoped>
+.experience-glow {
+    background: radial-gradient(
+        ellipse 55% 35% at 20% 60%,
+        rgba(2, 132, 199, 0.06) 0%,
+        transparent 70%
+    );
+}
+.timeline-line {
+    background: linear-gradient(
+        to bottom,
+        #0284c7 0%,
+        rgba(2, 132, 199, 0.3) 60%,
+        transparent 100%
+    );
+}
+</style>

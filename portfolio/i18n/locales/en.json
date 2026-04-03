@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "contact": "Contact",
+    "hire_me": "Hire Me",
+    "navigation": "Navigation",
+    "connect": "Connect"
+  },
+  "hero": {
+    "name": "Asadbek",
+    "surname": "Umarov",
+    "tagline": "Junior Frontend & Mobile Developer with 1 year of experience building modern web and mobile applications using React, Next.js, and React Native. Focused on clean UI, responsive design, and performance optimization across real-world projects including e-commerce, dashboards, and blogs. Based in",
+    "location": "Tashkent, Uzbekistan",
+    "open_to_work": "open to full-time, internship, and junior opportunities.",
+    "cta_view": "View My Projects",
+    "cta_contact": "Get in Touch"
+  },
+  "about": {
+    "label": "About Me",
+    "title": "Passionate about building",
+    "title_accent": "great experiences",
+    "description_1": "I am {name}, a {role} with one year of experience. I build cross-platform applications using {tech}.",
+    "description_2": "I have developed {projects} using {tools}. I focus on delivering {focus}.",
+    "description_3": "I am currently seeking {roles} roles to join a professional engineering team. I am available for {availability} opportunities worldwide.",
+    "stats": {
+      "projects": "Projects Shipped",
+      "experience": "Year of Experience",
+      "remote": "Remote Ready"
+    },
+    "info": {
+      "location": "Location",
+      "status": "Status",
+      "availability": "Availability",
+      "focus": "Focus",
+      "open_to_work": "Open to Work",
+      "remote_onsite": "Remote & On-site"
+    },
+    "ctas": {
+      "email": "Email Me",
+      "linkedin": "LinkedIn Profile",
+      "portfolio": "Portfolio Website"
+    },
+    "identity": {
+      "role": "Junior Frontend Developer",
+      "available": "Available for Work"
+    }
+  },
+  "skills": {
+    "label": "Technical Expertise",
+    "title": "Skills &",
+    "title_accent": "Technologies",
+    "description": "A focused toolkit forged through real-world projects and continuous self-driven learning.",
+    "bottom_note": "Always learning · Currently exploring",
+    "advanced_next": "advanced Next.js patterns",
+    "performance": "performance optimization",
+    "categories": {
+      "core": "Core Languages",
+      "frameworks": "Frameworks & Libraries",
+      "styling": "Styling",
+      "state": "State & Data",
+      "tools": "Tools & Workflow",
+      "soft": "Soft Skills"
+    }
+  },
+  "experience": {
+    "label": "Work History",
+    "title": "Professional",
+    "title_accent": "Experience",
+    "description": "Real-world production experience building user-facing applications that serve actual end-users.",
+    "current": "Current",
+    "open_to_work": "Open to New Opportunities",
+    "seeking": "Actively seeking junior frontend developer roles & internships worldwide.",
+    "cta_talk": "Let's Talk"
+  },
+  "projects": {
+    "label": "Portfolio",
+    "title": "Featured",
+    "title_accent": "Projects",
+    "description": "Real-world applications built across diverse domains — from e-commerce to e-sports, service platforms, and mobile education.",
+    "cta_full": "View Full Portfolio"
+  },
+  "education": {
+    "label": "Background",
+    "title": "Education &",
+    "title_accent": "Training",
+    "description": "A solid academic foundation built through intensive, hands-on training at a recognized tech education institution.",
+    "curriculum": "Curriculum Highlights",
+    "technologies": "Technologies Studied",
+    "continuous_learning": "Continuous Self-Learning",
+    "learning_note": "Beyond formal training — actively deepening expertise in {tech} through building real projects every day."
+  },
+  "contact": {
+    "label": "Get In Touch",
+    "title": "Let's Work",
+    "title_accent": "Together",
+    "description": "I'm actively seeking junior frontend developer roles and internships. Whether you have a project in mind or simply want to connect — my inbox is always open.",
+    "or_reach_out": "or reach out directly",
+    "cta_email": "Send Me an Email",
+    "response_time": "Typically respond within 24 hours · Located in UTC+5"
+  },
+  "footer": {
+    "tagline": "Junior Frontend Developer crafting modern, responsive web experiences with React, TypeScript & Next.js.",
+    "rights": "All rights reserved.",
+    "built_with": "Built with",
+    "deployed_on": "Deployed on"
+  }
+}

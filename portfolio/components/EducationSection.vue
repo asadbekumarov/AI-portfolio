@@ -51,36 +51,24 @@ const education: EducationItem[] = [
 
         <!-- Background glow — teal -->
         <div
-            class="pointer-events-none absolute inset-0"
-            style="
-                background: radial-gradient(
-                    ellipse 55% 35% at 80% 40%,
-                    rgba(4, 124, 88, 0.06) 0%,
-                    transparent 70%
-                );
-            "
+            class="pointer-events-none absolute inset-0 education-glow"
             aria-hidden="true"
         />
 
         <div class="section-container relative">
             <!-- ── Section Header ── -->
             <div class="text-center mb-14">
-                <span class="section-label mb-3 scroll-animate"
-                    >Background</span
-                >
+                <span class="section-label mb-3 scroll-animate">{{ $t('education.label') }}</span>
                 <h2
                     id="education-heading"
                     class="section-title mt-2 scroll-animate delay-100"
                 >
-                    Education &amp; <span class="gradient-text">Training</span>
+                    {{ $t('education.title') }} <span class="gradient-text">{{ $t('education.title_accent') }}</span>
                 </h2>
                 <p
-                    class="mt-4 max-w-xl mx-auto text-base leading-relaxed scroll-animate delay-200"
-                    style="color: rgba(226, 232, 240, 0.44)"
+                    class="mt-4 max-w-xl mx-auto text-base leading-relaxed scroll-animate delay-200 text-slate-400/45"
                 >
-                    A solid academic foundation built through intensive,
-                    hands-on training at a recognized tech education
-                    institution.
+                    {{ $t('education.description') }}
                 </p>
             </div>
 
@@ -89,22 +77,13 @@ const education: EducationItem[] = [
                 <div
                     v-for="edu in education"
                     :key="edu.institution"
-                    class="glass-card p-7 sm:p-10 scroll-animate delay-200"
-                    style="border-color: rgba(2, 132, 199, 0.18)"
+                    class="glass-card p-7 sm:p-10 scroll-animate delay-200 border-sky-500/20"
                 >
                     <!-- ── Card Header ── -->
                     <div class="flex flex-wrap items-start gap-5 mb-7">
                         <!-- Institution icon — blue → teal gradient -->
                         <div
-                            class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    rgba(2, 132, 199, 0.16) 0%,
-                                    rgba(4, 124, 88, 0.12) 100%
-                                );
-                                border: 1px solid rgba(2, 132, 199, 0.26);
-                            "
+                            class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 edu-icon-box"
                             aria-hidden="true"
                         >
                             <svg
@@ -125,20 +104,17 @@ const education: EducationItem[] = [
                         <!-- Institution details -->
                         <div class="flex-1 min-w-0">
                             <h3
-                                class="text-xl font-bold leading-tight"
-                                style="color: #e2e8f0"
+                                class="text-xl font-bold leading-tight text-slate-200"
                             >
                                 {{ edu.institution }}
                             </h3>
                             <p
-                                class="text-base font-semibold mt-0.5"
-                                style="color: #0284c7"
+                                class="text-base font-semibold mt-0.5 text-sky-600"
                             >
                                 {{ edu.program }}
                             </p>
                             <p
-                                class="text-sm mt-0.5"
-                                style="color: rgba(226, 232, 240, 0.44)"
+                                class="text-sm mt-0.5 text-slate-400/45"
                             >
                                 {{ edu.credential }}
                             </p>
@@ -149,13 +125,7 @@ const education: EducationItem[] = [
                             >
                                 <!-- Period -->
                                 <span
-                                    class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-lg"
-                                    style="
-                                        background: rgba(13, 33, 56, 0.8);
-                                        border: 1px solid
-                                            rgba(2, 132, 199, 0.15);
-                                        color: rgba(226, 232, 240, 0.62);
-                                    "
+                                    class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-lg bg-[#0d2138]/80 border border-sky-500/15 text-slate-200/60"
                                 >
                                     <svg
                                         width="11"
@@ -183,13 +153,7 @@ const education: EducationItem[] = [
 
                                 <!-- Location -->
                                 <span
-                                    class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-lg"
-                                    style="
-                                        background: rgba(13, 33, 56, 0.8);
-                                        border: 1px solid
-                                            rgba(2, 132, 199, 0.15);
-                                        color: rgba(226, 232, 240, 0.62);
-                                    "
+                                    class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-lg bg-[#0d2138]/80 border border-sky-500/15 text-slate-200/60"
                                 >
                                     <svg
                                         width="10"
@@ -213,15 +177,13 @@ const education: EducationItem[] = [
 
                     <!-- Horizontal divider -->
                     <div
-                        class="w-full h-px mb-7"
-                        style="background: rgba(2, 132, 199, 0.1)"
+                        class="w-full h-px mb-7 bg-sky-500/10"
                         aria-hidden="true"
                     />
 
                     <!-- Description -->
                     <p
-                        class="text-sm leading-relaxed mb-7"
-                        style="color: rgba(226, 232, 240, 0.62)"
+                        class="text-sm leading-relaxed mb-7 text-slate-400/60"
                     >
                         {{ edu.description }}
                     </p>
@@ -229,13 +191,9 @@ const education: EducationItem[] = [
                     <!-- Curriculum Highlights -->
                     <div class="mb-7">
                         <h4
-                            class="text-xs font-bold uppercase tracking-widest mb-4"
-                            style="
-                                color: rgba(226, 232, 240, 0.3);
-                                letter-spacing: 0.12em;
-                            "
+                            class="text-xs font-bold uppercase tracking-widest mb-4 text-slate-400/30"
                         >
-                            Curriculum Highlights
+                            {{ $t('education.curriculum') }}
                         </h4>
 
                         <ul
@@ -245,17 +203,11 @@ const education: EducationItem[] = [
                             <li
                                 v-for="highlight in edu.highlights"
                                 :key="highlight"
-                                class="flex items-start gap-3 text-sm"
-                                style="color: rgba(226, 232, 240, 0.82)"
+                                class="flex items-start gap-3 text-sm text-slate-200/80"
                             >
                                 <!-- Blue check icon -->
                                 <span
-                                    class="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full flex items-center justify-center"
-                                    style="
-                                        background: rgba(2, 132, 199, 0.12);
-                                        border: 1px solid
-                                            rgba(2, 132, 199, 0.26);
-                                    "
+                                    class="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full flex items-center justify-center bg-sky-500/10 border border-sky-500/25"
                                     aria-hidden="true"
                                 >
                                     <svg
@@ -278,21 +230,16 @@ const education: EducationItem[] = [
 
                     <!-- Horizontal divider -->
                     <div
-                        class="w-full h-px mb-5"
-                        style="background: rgba(2, 132, 199, 0.1)"
+                        class="w-full h-px mb-5 bg-sky-500/10"
                         aria-hidden="true"
                     />
 
                     <!-- Technology Tags -->
                     <div>
                         <h4
-                            class="text-xs font-bold uppercase tracking-widest mb-3"
-                            style="
-                                color: rgba(226, 232, 240, 0.3);
-                                letter-spacing: 0.12em;
-                            "
+                            class="text-xs font-bold uppercase tracking-widest mb-3 text-slate-400/30"
                         >
-                            Technologies Studied
+                            {{ $t('education.technologies') }}
                         </h4>
                         <div
                             class="flex flex-wrap gap-2"
@@ -311,46 +258,45 @@ const education: EducationItem[] = [
 
                 <!-- ── Continuous Learning Note ── -->
                 <div
-                    class="glass-card mt-5 p-5 flex items-center gap-4 scroll-animate delay-300"
-                    style="
-                        border-color: rgba(2, 132, 199, 0.15);
-                        background: rgba(2, 132, 199, 0.04);
-                    "
+                    class="glass-card mt-5 p-5 flex items-center gap-4 scroll-animate delay-300 border-sky-500/15 bg-sky-500/5"
                 >
                     <div
-                        class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-xl"
-                        style="
-                            background: rgba(2, 132, 199, 0.1);
-                            border: 1px solid rgba(2, 132, 199, 0.2);
-                        "
+                        class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-xl bg-sky-500/10 border border-sky-500/20"
                         aria-hidden="true"
                     >
                         📚
                     </div>
                     <div>
-                        <p class="text-sm font-semibold" style="color: #e2e8f0">
-                            Continuous Self-Learning
+                        <p class="text-sm font-semibold text-slate-200">
+                            {{ $t('education.continuous_learning') }}
                         </p>
                         <p
-                            class="text-xs mt-0.5"
-                            style="color: rgba(226, 232, 240, 0.44)"
-                        >
-                            Beyond formal training — actively deepening
-                            expertise in
-                            <strong style="color: #0284c7; font-weight: 500"
-                                >advanced React patterns</strong
-                            >,
-                            <strong style="color: #0284c7; font-weight: 500"
-                                >Next.js App Router</strong
-                            >, and
-                            <strong style="color: #0284c7; font-weight: 500"
-                                >web performance optimization</strong
-                            >
-                            through building real projects every day.
-                        </p>
+                            class="text-xs mt-0.5 text-slate-400/45"
+                            v-html="$t('education.learning_note', {
+                                tech: `<strong class='text-sky-600 font-medium'>advanced React patterns</strong>, <strong class='text-sky-600 font-medium'>Next.js App Router</strong>, and <strong class='text-sky-600 font-medium'>web performance optimization</strong>`
+                            })"
+                        ></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<style scoped>
+.education-glow {
+    background: radial-gradient(
+        ellipse 55% 35% at 80% 40%,
+        rgba(4, 124, 88, 0.06) 0%,
+        transparent 70%
+    );
+}
+.edu-icon-box {
+    background: linear-gradient(
+        135deg,
+        rgba(2, 132, 199, 0.16) 0%,
+        rgba(4, 124, 88, 0.12) 100%
+    );
+    border: 1px solid rgba(2, 132, 199, 0.26);
+}
+</style>

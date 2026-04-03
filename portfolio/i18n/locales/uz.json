@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "about": "Haqida",
+    "skills": "Ko'nikmalar",
+    "experience": "Tajriba",
+    "projects": "Loyihalar",
+    "education": "Ta'lim",
+    "contact": "Bog'lanish",
+    "hire_me": "Band qilish",
+    "navigation": "Navigatsiya",
+    "connect": "Bog'lanish"
+  },
+  "hero": {
+    "name": "Asadbek",
+    "surname": "Umarov",
+    "tagline": "React, Next.js va React Native yordamida zamonaviy veb va mobil ilovalar yaratishda 1 yillik tajribaga ega bo'lgan Junior Frontend va Mobile dasturchisi. E-tijorat, dashboardlar va bloglar kabi real loyihalarda toza UI, responsiv dizayn va unumdorlikni optimallashtirishga e'tibor qaratadi.",
+    "location": "Toshkent, O'zbekiston",
+    "open_to_work": "to'liq vaqtli ish, stajirovka va junior lavozimlari uchun ochiq.",
+    "cta_view": "Loyihalarimni ko'rish",
+    "cta_contact": "Bog'lanish"
+  },
+  "about": {
+    "label": "Men haqimda",
+    "title": "Yaratishga bo'lgan",
+    "title_accent": "ishtiyoq",
+    "description_1": "Men {name}, 1 yillik tajribaga ega {role}man. Men {tech} yordamida kross-platforma ilovalarini yarataman.",
+    "description_2": "Men {tools} yordamida {projects} ishlab chiqqanman. Men {focus}ga e'tibor qarataman.",
+    "description_3": "Hozirda professional muhandislik jamoasiga qo'shilish uchun {roles} lavozimlarini qidiryapman. Men butun dunyo bo'ylab {availability} imkoniyatlari uchun tayyorman.",
+    "stats": {
+      "projects": "Tugallangan loyihalar",
+      "experience": "Yillik tajriba",
+      "remote": "Masofaviy ishlashga tayyor"
+    },
+    "info": {
+      "location": "Manzil",
+      "status": "Holat",
+      "availability": "Ish tartibi",
+      "focus": "Yo'nalish",
+      "open_to_work": "Ishga tayyor",
+      "remote_onsite": "Masofaviy va Ofis"
+    },
+    "ctas": {
+      "email": "Menga yozing",
+      "linkedin": "LinkedIn profili",
+      "portfolio": "Portfolio veb-sayti"
+    },
+    "identity": {
+      "role": "Junior Frontend dasturchi",
+      "available": "Ishga tayyor"
+    }
+  },
+  "skills": {
+    "label": "Texnik bilimlar",
+    "title": "Ko'nikmalar va",
+    "title_accent": "Texnologiyalar",
+    "description": "Real loyihalar va doimiy o'rganish orqali shakllangan bilimlar to'plami.",
+    "bottom_note": "Doimiy o'rganishda · Hozirda o'rganilmoqda",
+    "advanced_next": "Next.js ning murakkab patternlari",
+    "performance": "unumdorlikni optimallashtirish",
+    "categories": {
+      "core": "Asosiy tillar",
+      "frameworks": "Frameworklar va kutubxonalar",
+      "styling": "Styling",
+      "state": "State va ma'lumotlar",
+      "tools": "Asboblar va ish jarayoni",
+      "soft": "Yumshoq ko'nikmalar"
+    }
+  },
+  "experience": {
+    "label": "Ish tajribasi",
+    "title": "Professional",
+    "title_accent": "Tajriba",
+    "description": "Haqiqiy foydalanuvchilarga xizmat ko'rsatadigan ilovalar yaratishdagi ishlab chiqarish tajribasi.",
+    "current": "Hozirda",
+    "open_to_work": "Yangi imkoniyatlar uchun ochiq",
+    "seeking": "Butun dunyo bo'ylab junior frontend dasturchi va stajirovka rollarini faol qidirmoqda.",
+    "cta_talk": "Gaplashamiz"
+  },
+  "projects": {
+    "label": "Portfolio",
+    "title": "Tanlangan",
+    "title_accent": "Loyihalar",
+    "description": "E-tijoratdan tortib e-sport, xizmat ko'rsatish platformalari va mobil ta'limgacha bo'lgan turli sohalarda yaratilgan real loyihalar.",
+    "cta_full": "To'liq portfolioni ko'rish"
+  },
+  "education": {
+    "label": "Ma'lumot",
+    "title": "Ta'lim va",
+    "title_accent": "Tayyorgarlik",
+    "description": "Taniqli texnologik ta'lim muassasasida intensiv, amaliy mashg'ulotlar orqali qurilgan mustahkam akademik poydevor.",
+    "curriculum": "O'quv dasturining asosiy qismlari",
+    "technologies": "O'rganilgan texnologiyalar",
+    "continuous_learning": "Doimiy mustaqil ta'lim",
+    "learning_note": "Rasmiy ta'limdan tashqari — har kuni real loyihalar qurish orqali {tech} bo'yicha tajribani faol ravishda chuqurlashtirib bormoqda."
+  },
+  "contact": {
+    "label": "Bog'lanish",
+    "title": "Keling,",
+    "title_accent": "birga ishlaymiz",
+    "description": "Men junior frontend dasturchi lavozimlari va stajirovkalarni faol qidiryapman. Loyihangiz bormi yoki shunchaki bog'lanmoqchimisiz — men doim tayyorman.",
+    "or_reach_out": "yoki to'g'ridan-to'g'ri bog'laning",
+    "cta_email": "Menga xabar yuboring",
+    "response_time": "Odatda 24 soat ichida javob beraman · UTC+5 vaqti bilan"
+  },
+  "footer": {
+    "tagline": "React, TypeScript va Next.js yordamida zamonaviy, responsiv veb-tajribalar yaratuvchi Junior Frontend dasturchi.",
+    "rights": "Barcha huquqlar himoyalangan.",
+    "built_with": "Yaratilgan",
+    "deployed_on": "Serverga yuklangan"
+  }
+}

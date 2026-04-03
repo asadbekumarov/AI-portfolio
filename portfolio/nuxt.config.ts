@@ -8,7 +8,24 @@ export default defineNuxtConfig({
     preset: "vercel",
   },
 
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n"],
+
+  i18n: {
+    locales: [
+      { code: "en", name: "English", iso: "en-US", file: "en.json" },
+      { code: "uz", name: "O'zbek", iso: "uz-UZ", file: "uz.json" },
+    ],
+    defaultLocale: "en",
+    strategy: "prefix_except_default",
+    lazy: true,
+    langDir: "locales",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      alwaysRedirect: true,
+      fallbackLocale: "en",
+    },
+  },
 
   css: ["~/assets/css/main.css"],
 

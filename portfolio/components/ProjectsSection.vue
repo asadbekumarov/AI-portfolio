@@ -1,85 +1,70 @@
 <script setup lang="ts">
 interface Project {
     title: string;
-    subtitle: string;
+    subtitleKey: string;
     category: string;
-    status: "In Development" | "Completed";
-    description: string;
+    statusKey: string;
+    descriptionKey: string;
     highlights: string[];
     technologies: string[];
 }
 
+// Note: For a real production app, project descriptions should also be in i18n files.
+// For now, we use keys and map them.
 const projects: Project[] = [
     {
         title: "Mann Home",
-        subtitle: "E-Commerce Platform",
+        subtitleKey: "projects.items.mann_home.subtitle",
         category: "Web App",
-        status: "In Development",
-        description:
-            "A high-performance e-commerce platform for online furniture retail. Focused on core frontend modules with robust state management and seamless API integration for an optimized shopping experience.",
+        statusKey: "projects.status.development",
+        descriptionKey: "projects.items.mann_home.description",
         highlights: [
-            "End-to-end RTK Query integration for efficient product data fetching and caching",
-            "Responsive, mobile-first UI designed for a premium shopping experience",
-            "Modular component architecture built for long-term scalability",
+            "RTK Query integration",
+            "Responsive UI",
+            "Modular architecture",
         ],
         technologies: ["React.js", "TypeScript", "RTK Query", "Tailwind CSS"],
     },
     {
-        title: "PUBG Tournament Platform",
-        subtitle: "E-Sports Management System",
+        title: "PUBG Tournament",
+        subtitleKey: "projects.items.pubg.subtitle",
         category: "Web App",
-        status: "Completed",
-        description:
-            "A regional e-sports tournament management system supporting multi-province competitions. Features dynamic UI for tournament brackets, player registration flows, and real-time status updates.",
+        statusKey: "projects.status.completed",
+        descriptionKey: "projects.items.pubg.description",
         highlights: [
-            "Dynamic tournament bracket and player registration flow components",
-            "SEO-optimized architecture leveraging Next.js SSR and SSG features",
-            "High-performance UI built to handle real-time competition data updates",
+            "Dynamic brackets",
+            "Next.js SSR/SSG",
+            "Real-time updates",
         ],
         technologies: ["Next.js", "React.js", "TypeScript", "Tailwind CSS"],
     },
     {
         title: "Darrow",
-        subtitle: "Multi-Service Telegram Mini App",
+        subtitleKey: "projects.items.darrow.subtitle",
         category: "Telegram Mini App",
-        status: "In Development",
-        description:
-            "A Telegram-integrated multi-service platform covering taxi booking and food delivery. Built with a strong focus on mobile-first UX and smooth service navigation within the Telegram ecosystem.",
+        statusKey: "projects.status.development",
+        descriptionKey: "projects.items.darrow.description",
         highlights: [
-            "Telegram WebApp API integration for a native in-app user experience",
-            "Unified UI spanning both taxi and food delivery service flows",
-            "Responsive mobile-first design optimized for Telegram clients",
-        ],
-        technologies: [
-            "React.js",
-            "TypeScript",
-            "Tailwind CSS",
             "Telegram API",
+            "Taxi & Food flows",
+            "Mobile-first",
         ],
+        technologies: ["React.js", "TypeScript", "Tailwind CSS", "Telegram API"],
     },
     {
         title: "VocabApp",
-        subtitle: "Mobile Vocabulary Learning App",
+        subtitleKey: "projects.items.vocab.subtitle",
         category: "Mobile App",
-        status: "Completed",
-        description:
-            "A mobile application designed to help language learners efficiently build and retain vocabulary. Features batch word entry, structured daily review sessions, and smart randomized quizzes.",
+        statusKey: "projects.status.completed",
+        descriptionKey: "projects.items.vocab.description",
         highlights: [
-            "Batch word entry system enabling fast, frictionless vocabulary input",
-            "Daily review sessions structured around spaced repetition principles",
-            "Smart randomized quiz engine for active memory reinforcement",
+            "Batch word entry",
+            "Spaced repetition",
+            "Smart quizzes",
         ],
         technologies: ["React Native", "TypeScript", "Mobile"],
     },
 ];
-
-// Status chip styles — only palette colors
-const statusStyles: Record<string, string> = {
-    "In Development":
-        "color: rgba(226,232,240,0.88); background: rgba(4,124,88,0.10); border-color: rgba(4,124,88,0.28);",
-    Completed:
-        "color: rgba(226,232,240,0.88); background: rgba(2,132,199,0.10); border-color: rgba(2,132,199,0.28);",
-};
 
 const categoryIcon: Record<string, string> = {
     "Web App": "🌐",
@@ -99,36 +84,26 @@ const categoryIcon: Record<string, string> = {
 
         <!-- Subtle teal glow at bottom -->
         <div
-            class="pointer-events-none absolute inset-0"
-            style="
-                background: radial-gradient(
-                    ellipse 70% 40% at 50% 100%,
-                    rgba(4, 124, 88, 0.06) 0%,
-                    transparent 70%
-                );
-            "
+            class="pointer-events-none absolute inset-0 projects-glow"
             aria-hidden="true"
         />
 
         <div class="section-container relative">
             <!-- ── Section Header ── -->
             <div class="text-center mb-14">
-                <span class="section-label mb-3 scroll-animate">Portfolio</span>
+                <span class="section-label mb-3 scroll-animate">{{ $t('projects.label') }}</span>
 
                 <h2
                     id="projects-heading"
                     class="section-title mt-2 scroll-animate delay-100"
                 >
-                    Featured <span class="gradient-text">Projects</span>
+                    {{ $t('projects.title') }} <span class="gradient-text">{{ $t('projects.title_accent') }}</span>
                 </h2>
 
                 <p
-                    class="mt-4 max-w-xl mx-auto text-base leading-relaxed scroll-animate delay-200"
-                    style="color: rgba(226, 232, 240, 0.44)"
+                    class="mt-4 max-w-xl mx-auto text-base leading-relaxed scroll-animate delay-200 text-slate-400/45"
                 >
-                    Real-world applications built across diverse domains — from
-                    e-commerce to e-sports, service platforms, and mobile
-                    education.
+                    {{ $t('projects.description') }}
                 </p>
             </div>
 
@@ -137,13 +112,12 @@ const categoryIcon: Record<string, string> = {
                 <article
                     v-for="(project, index) in projects"
                     :key="project.title"
-                    class="glass-card flex flex-col scroll-animate"
+                    class="glass-card flex flex-col scroll-animate group"
                     :style="`transition-delay: ${index * 0.1}s;`"
                     :aria-label="`Project: ${project.title}`"
                 >
                     <div
-                        class="flex flex-col flex-1 p-7 rounded-2xl transition-transform duration-300 hover:-translate-y-1"
-                        style="height: 100%"
+                        class="flex flex-col flex-1 p-7 rounded-2xl transition-transform duration-300 group-hover:-translate-y-1 h-full"
                     >
                         <!-- ── Card Header ── -->
                         <div
@@ -153,14 +127,10 @@ const categoryIcon: Record<string, string> = {
                                 <!-- Category badge -->
                                 <div class="flex items-center gap-1.5 mb-2">
                                     <span class="text-sm" aria-hidden="true">
-                                        {{
-                                            categoryIcon[project.category] ??
-                                            "📁"
-                                        }}
+                                        {{ categoryIcon[project.category] ?? "📁" }}
                                     </span>
                                     <span
-                                        class="text-xs font-semibold tracking-wider uppercase"
-                                        style="color: rgba(226, 232, 240, 0.35)"
+                                        class="text-xs font-semibold tracking-wider uppercase text-slate-400/35"
                                     >
                                         {{ project.category }}
                                     </span>
@@ -168,37 +138,34 @@ const categoryIcon: Record<string, string> = {
 
                                 <!-- Title -->
                                 <h3
-                                    class="text-lg font-bold leading-tight mb-0.5"
-                                    style="color: #e2e8f0"
+                                    class="text-lg font-bold leading-tight mb-0.5 text-slate-200"
                                 >
                                     {{ project.title }}
                                 </h3>
 
                                 <!-- Subtitle -->
                                 <p
-                                    class="text-sm font-medium"
-                                    style="color: rgba(226, 232, 240, 0.44)"
+                                    class="text-sm font-medium text-slate-400/45"
                                 >
-                                    {{ project.subtitle }}
+                                    {{ project.subtitleKey.includes('.') ? $t(project.subtitleKey) : project.subtitleKey }}
                                 </p>
                             </div>
 
                             <!-- Status chip -->
                             <span
                                 class="text-xs font-semibold px-2.5 py-1 rounded-full border flex-shrink-0 whitespace-nowrap"
-                                :style="statusStyles[project.status]"
-                                :aria-label="`Status: ${project.status}`"
+                                :class="project.statusKey.includes('development') ? 'status-dev' : 'status-completed'"
+                                :aria-label="`Status: ${$t(project.statusKey)}`"
                             >
-                                {{ project.status }}
+                                {{ project.statusKey.includes('.') ? $t(project.statusKey) : project.statusKey }}
                             </span>
                         </div>
 
                         <!-- ── Description ── -->
                         <p
-                            class="text-sm leading-relaxed mb-5"
-                            style="color: rgba(226, 232, 240, 0.55)"
+                            class="text-sm leading-relaxed mb-5 text-slate-400/55"
                         >
-                            {{ project.description }}
+                            {{ project.descriptionKey.includes('.') ? $t(project.descriptionKey) : project.descriptionKey }}
                         </p>
 
                         <!-- ── Highlights ── -->
@@ -209,13 +176,11 @@ const categoryIcon: Record<string, string> = {
                             <li
                                 v-for="highlight in project.highlights"
                                 :key="highlight"
-                                class="flex items-start gap-2.5 text-xs leading-relaxed"
-                                style="color: rgba(226, 232, 240, 0.72)"
+                                class="flex items-start gap-2.5 text-xs leading-relaxed text-slate-200/70"
                             >
                                 <!-- Bullet dot — blue accent -->
                                 <span
-                                    class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full"
-                                    style="background: rgba(2, 132, 199, 0.7)"
+                                    class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-sky-600/70"
                                     aria-hidden="true"
                                 />
                                 {{ highlight }}
@@ -224,8 +189,7 @@ const categoryIcon: Record<string, string> = {
 
                         <!-- ── Divider ── -->
                         <div
-                            class="h-px w-full mb-4"
-                            style="background: rgba(2, 132, 199, 0.1)"
+                            class="h-px w-full mb-4 bg-sky-500/10"
                             aria-hidden="true"
                         />
 
@@ -272,7 +236,7 @@ const categoryIcon: Record<string, string> = {
                             d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"
                         />
                     </svg>
-                    View Full Portfolio
+                    {{ $t('projects.cta_full') }}
                     <!-- External link icon -->
                     <svg
                         width="13"
@@ -294,3 +258,23 @@ const categoryIcon: Record<string, string> = {
         </div>
     </section>
 </template>
+
+<style scoped>
+.projects-glow {
+    background: radial-gradient(
+        ellipse 70% 40% at 50% 100%,
+        rgba(4, 124, 88, 0.06) 0%,
+        transparent 70%
+    );
+}
+.status-dev {
+    color: rgba(226, 232, 240, 0.88);
+    background: rgba(4, 124, 88, 0.1);
+    border-color: rgba(4, 124, 88, 0.28);
+}
+.status-completed {
+    color: rgba(226, 232, 240, 0.88);
+    background: rgba(2, 132, 199, 0.1);
+    border-color: rgba(2, 132, 199, 0.28);
+}
+</style>
